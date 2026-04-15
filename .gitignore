@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.claude/
+donnee a analyser/
+Saisie Achat Linge - RESULTAT*.xlsx
+docs/superpowers/
