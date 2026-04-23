@@ -1,6 +1,93 @@
+---
+
+## 🚀 Démarrage rapide — UNE seule commande
+
+Ce projet est un ensemble de **scripts Python autonomes** (pas de serveur web).
+
+Après `git clone`, depuis la racine du projet :
+
+**Windows (PowerShell)**
+```powershell
+.\go.ps1 install                      # installe les deps
+.\go.ps1 list                         # liste les scripts
+.\go.ps1 run extract_factures.py      # execute un script
+```
+
+**Linux / macOS / Git Bash**
+```bash
+bash go.sh install
+bash go.sh list
+bash go.sh run extract_factures.py
+```
+
+Raccourci : `.\go.ps1 mon_script.py` équivaut à `.\go.ps1 run mon_script.py`.
+
+### Sous-commandes
+| But | PowerShell | Bash |
+|---|---|---|
+| Installer les deps | `.\go.ps1 install` | `bash go.sh install` |
+| Lister les scripts | `.\go.ps1 list` | `bash go.sh list` |
+| Lancer un script | `.\go.ps1 run <s>` | `bash go.sh run <s>` |
+
+> Pré-requis : `python` (3.11+), `git` accessibles dans le PATH.
+
+### 🐳 Alternative : Docker (aucune install Python locale requise)
+
+L'outil etant un CLI (pas de serveur), on utilise `docker compose run` :
+
+```bash
+docker compose build                                                # 1ere fois
+docker compose run --rm extractor python extract_factures.py        # variante OCR pur
+docker compose run --rm extractor python extract_factures_llm.py    # variante OCR + LLM
+```
+
+Les dossiers d'entree (`donnee a analyser/`) et les Excel de sortie restent sur l'hote (bind-mount).
+
+Pour la **variante LLM** (Ollama) : Ollama doit tourner sur l'hote. Le compose
+passe deja `OLLAMA_URL=http://host.docker.internal:11434/api/generate` pour que
+le script reach l'Ollama host depuis le container.
+
+---
 # Extraction Automatique de Factures - GIP DU TREGOR-GOELO
 
 Outil d'extraction automatique des donnees de factures scannees (PDF) vers un fichier Excel structure, utilisant l'OCR et un LLM local.
+
+
+---
+
+## 🚀 Démarrage rapide — UNE seule commande
+
+Ce projet est un ensemble de **scripts Python autonomes** (pas de serveur web).
+
+Après `git clone`, depuis la racine du projet :
+
+**Windows (PowerShell)**
+```powershell
+.go.ps1 install                      # installe les deps
+.go.ps1 list                         # liste les scripts
+.go.ps1 run extract_factures.py      # execute un script
+```
+
+**Linux / macOS / Git Bash**
+```bash
+bash go.sh install
+bash go.sh list
+bash go.sh run extract_factures.py
+```
+
+Raccourci : `.go.ps1 mon_script.py` équivaut à `.go.ps1 run mon_script.py`.
+
+### Sous-commandes
+| But | PowerShell | Bash |
+|---|---|---|
+| Installer les deps | `.go.ps1 install` | `bash go.sh install` |
+| Lister les scripts | `.go.ps1 list` | `bash go.sh list` |
+| Lancer un script | `.go.ps1 run <s>` | `bash go.sh run <s>` |
+
+> Pré-requis : `python` (3.11+), `git` accessibles dans le PATH.
+> Si `requirements.txt` n'existe pas, il sera créé vide au premier `install`. Ajoute-y tes dépendances pip.
+
+---
 
 ## Fonctionnalites
 

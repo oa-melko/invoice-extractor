@@ -1,0 +1,11 @@
+# invoice_extractor - dependances runtime
+# Python 3.11+ requis
+
+# OCR (avec backend PyTorch CPU)
+python-doctr[torch]>=0.8,<1.0
+
+# Export Excel
+openpyxl>=3.1,<4.0
+
+# Client HTTP (pour la variante Ollama)
+requests>=2.32,<3.0

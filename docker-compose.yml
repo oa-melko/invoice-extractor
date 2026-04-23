@@ -1,0 +1,23 @@
+# invoice_extractor - outils CLI (pas de serveur persistant)
+# Usage :
+#   docker compose build                                  # build l'image
+#   docker compose run --rm extractor python extract_factures.py       # variante OCR pur
+#   docker compose run --rm extractor python extract_factures_llm.py   # variante OCR + LLM Ollama
+#
+# Le dossier courant est bind-mount : inputs (PDFs) et outputs (Excel) restent sur l'hote.
+# Pour la variante LLM, Ollama doit tourner sur l'hote (URL http://host.docker.internal:11434).
+
+services:
+  extractor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice-extractor
+    volumes:
+      - .:/app
+    # Permet au container d'atteindre l'hote (pour Ollama en local)
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # Si tu utilises la variante LLM, remplace localhost par host.docker.internal
+      OLLAMA_URL: "http://host.docker.internal:11434/api/generate"

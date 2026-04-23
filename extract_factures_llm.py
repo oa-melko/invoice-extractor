@@ -18,7 +18,7 @@ CONFIDENCE_THRESHOLD = 0.80
 INPUT_DIR = "donnee a analyser"
 OUTPUT_FILE = "Saisie Achat Linge - RESULTAT.xlsx"
 OLLAMA_MODEL = "gemma2:latest"
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
 
 # Supplier display names (order for Excel output)
 SUPPLIER_ORDER = [
